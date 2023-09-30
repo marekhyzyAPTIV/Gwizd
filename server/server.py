@@ -4,7 +4,9 @@ from pathlib import Path
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 import urllib.parse as urlparse
+import json
 
+PATH_JSON = Path("animals.json")
 
 def create_db(path: Path):
     conn = sqlite3.connect(path)
@@ -38,12 +40,19 @@ def create_db(path: Path):
          FOREIGN KEY(unique_animal_id) REFERENCES unique_animal(_id),
          FOREIGN KEY(report_id) REFERENCES report(_id));"""
     )
+    with conn:
+        add_animals(conn, PATH_JSON)
     return conn
-
 
 def add_animal(conn: Connection, name: str, description: str, dangerous: bool):
     command = f"INSERT INTO animal (name, description, dangerous)\nVALUES ( '{name}', '{description}', {dangerous} );"  
     conn.execute(command)
+
+def add_animals(conn: Connection, path_json: Path):
+    with open(path_json) as f:
+        animals = json.load(f)
+    for animal in animals:
+        add_animal(conn, **animal)
 
 def add_report(conn: Connection, animal_id: int, timestamp: int, longitude: float, latitude: float):         
     command = f"INSERT INTO report (animal_id, timestamp, longitude, latitude)\nVALUES ( {animal_id}, {timestamp}, {longitude}, {latitude} );"  
@@ -119,9 +128,6 @@ if __name__ == "__main__":
         conn = create_db(path_db)
     else:
         conn = sqlite3.connect(path_db)
-
-    with conn:
-        add_animal(conn, "Test animal", "Test desc", False)
 
     rows = conn.execute("SELECT _id, name, description, dangerous FROM animal ORDER BY _id")
     for row in rows:

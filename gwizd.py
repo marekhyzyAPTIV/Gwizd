@@ -49,7 +49,7 @@ class CameraScreen(Screen):
     
     def sendImage(self, im):
         image = cv2.imread("dog.jpg")
-        upload_file = {"Uploaded file": image}
+        upload_file = {"Uploaded file": image, "location": (51,28)}
         r = requests.post(url, files=upload_file)  # TODO change url to server path
 
         

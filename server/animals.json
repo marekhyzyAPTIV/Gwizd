@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Pies",
+        "description": "Opis psa",
+        "dangerous": false
+    },
+    {
+        "name": "Kot",
+        "description": "Opis kota",
+        "dangerous": false
+    },
+    {
+        "name": "Lis",
+        "description": "Opis lisa",
+        "dangerous": true
+    }
+]

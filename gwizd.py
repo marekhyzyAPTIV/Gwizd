@@ -6,20 +6,29 @@ from kivy.uix.widget import Widget
 from kivy_garden.mapview import MapView
 import time
 from kivy.uix.screenmanager import ScreenManager, Screen
+import requests
+import cv2
+
 
 class MainButtons(AnchorLayout):
     def __init__(self, **kwargs):
         super(MainButtons, self).__init__(**kwargs)
-        self.anchor_x = 'right'
-        self.anchor_y = 'bottom'
-        
+        self.anchor_x = "right"
+        self.anchor_y = "bottom"
+
     def add_click(self):
         print("Clicked add animal")
-        self.parent.manager.current = 'Report Screen'
-    
+        self.sendImage()
+        self.parent.manager.current = "Report Screen"
+
+    def sendImage(self):
+        image = cv2.imread("dog.jpg")
+        upload_file = {"Uploaded file": image}
+        r = requests.post(url, files=upload_file)  # TODO change url to server path
+
     def gps_click(self):
         print("Localizing")
-    
+
     def alerts_click(self):
         print("Showing alerts")
         
@@ -28,14 +37,15 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         main_buttons = MainButtons()
         mapview = MapView(zoom=6, lat=51.91, lon=19.08)
-        #layout = RelativeLayout()
+        # layout = RelativeLayout()
         self.add_widget(mapview)
         self.add_widget(main_buttons)
-        
+
+
 class ReportScreen(Screen):
     def __init__(self, **kwargs):
         super(ReportScreen, self).__init__(**kwargs)
-        
+
 
 class CameraScreen(Screen):
     def __init__(self, **kwargs):
@@ -55,15 +65,16 @@ class CameraScreen(Screen):
 class LostAnimalScreen(Screen):
     pass
 
+
 class Gwizd(App):
     def build(self):
         sm = ScreenManager()
-        sm.add_widget(MainScreen(name='Main Screen'))
-        sm.add_widget(ReportScreen(name='Report Screen'))
-        sm.add_widget(CameraScreen(name='Camera Screen'))
-        sm.add_widget(LostAnimalScreen(name='Lost Animal Screen'))
+        sm.add_widget(MainScreen(name="Main Screen"))
+        sm.add_widget(ReportScreen(name="Report Screen"))
+        sm.add_widget(CameraScreen(name="Camera Screen"))
+        sm.add_widget(LostAnimalScreen(name="Lost Animal Screen"))
         return sm
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     Gwizd().run()

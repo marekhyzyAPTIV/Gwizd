@@ -50,7 +50,7 @@ class CameraScreen(Screen):
     def sendImage(self, im):
         image = cv2.imread("dog.jpg")
         upload_file = {"Uploaded file": image, "location": (51,28)}
-        r = requests.post(url, files=upload_file)  # TODO change url to server path
+        #r = requests.post(url, files=upload_file)  # TODO change url to server path
 
         
     def capture(self):
@@ -66,8 +66,20 @@ class CameraScreen(Screen):
         self.sendImage(image)
         self.manager.current = 'Main Screen'
 
-class LostAnimalScreen(Screen):
+class ReportWildScreen(Screen):
+    
+    # Receive animal classification
+    # Show editable interface - (Make new photo, animal type - possibility to correct, SEND)
     pass
+
+class LostAnimalScreen(Screen):
+    def __init__(self, **kwargs):
+        super(LostAnimalScreen, self).__init__(**kwargs)
+    # Upload photo -> Wait for response
+    # If not uploaded -> Type in animal type by user
+    # Show prediction, text fields: (Animal name, last seen, additional info)
+    def photo_upload(self):
+        pass
 
 
 class Gwizd(App):

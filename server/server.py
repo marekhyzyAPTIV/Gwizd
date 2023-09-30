@@ -104,6 +104,11 @@ class RequestHandler(BaseHTTPRequestHandler):
                 return
             with self.conn:
                 add_report(self.conn, *params)
+        elif '/init-report' in self.path:
+            length = int(self.headers.get('content-length'))
+            field_data = self.rfile.read(length)
+            fields = urlparse.parse_qs(field_data)
+            print("fields", fields)
 
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))

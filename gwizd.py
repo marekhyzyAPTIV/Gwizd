@@ -7,7 +7,7 @@ from kivy_garden.mapview import MapView
 import time
 from kivy.uix.screenmanager import ScreenManager, Screen
 import requests
-import cv2
+# import cv2
 
 
 class MainButtons(AnchorLayout):
@@ -48,9 +48,9 @@ class CameraScreen(Screen):
         super(CameraScreen, self).__init__(**kwargs)
     
     def sendImage(self, im):
-        image = cv2.imread("dog.jpg")
-        upload_file = {"Uploaded file": image, "location": (51,28)}
-        r = requests.post(url, files=upload_file)  # TODO change url to server path
+        #image = cv2.imread("dog.jpg")
+        upload_file = {"Uploaded file": im, "location": (51,28)}
+        r = requests.post("localhost:8080/init-report", files=upload_file)  # TODO change url to server path
 
         
     def capture(self):

@@ -1,0 +1,47 @@
+# Creation of main window
+<MainButtons>:
+        BoxLayout:
+                orientation: 'vertical'
+                size_hint_x: 0.1
+                size_hint_y: 0.3
+
+                Button:
+                        text: '+'
+                        on_press: root.add_click()
+                        size_hint_x: 1
+                        size_hint_y: 1
+                Button:
+                        text: '!'
+                        on_press: root.alerts_click()
+                        size_hint_x: 1
+                        size_hint_y: 1
+                Button:
+                        text: 'G'
+                        on_press: root.gps_click()
+                        size_hint_x: 1
+                        size_hint_y: 1
+
+<CameraClick>:
+        orientation: 'vertical'
+        Camera:
+                id: camera
+                resolution: (640, 480)
+                play: False
+        ToggleButton:
+                text: 'Play'
+                on_press: camera.play = not camera.play
+                size_hint_y: None
+                height: '48dp'
+        Button:
+                text: 'Capture'
+                size_hint_y: None
+                height: '48dp'
+                on_press: root.capture()
+
+<SettingsScreen>:
+        BoxLayout:
+                Button:
+                        text: 'My settings button'
+                Button:
+                        text: 'Back to menu'
+                        on_press: root.manager.current = 'menu'

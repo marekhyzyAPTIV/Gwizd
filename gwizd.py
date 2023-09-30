@@ -18,13 +18,9 @@ class MainButtons(AnchorLayout):
 
     def add_click(self):
         print("Clicked add animal")
-        self.sendImage()
+        #self.sendImage()
         self.parent.manager.current = "Report Screen"
 
-    def sendImage(self):
-        image = cv2.imread("dog.jpg")
-        upload_file = {"Uploaded file": image}
-        r = requests.post(url, files=upload_file)  # TODO change url to server path
 
     def gps_click(self):
         print("Localizing")
@@ -50,6 +46,12 @@ class ReportScreen(Screen):
 class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
+    
+    def sendImage(self, im):
+        image = cv2.imread("dog.jpg")
+        upload_file = {"Uploaded file": image}
+        r = requests.post(url, files=upload_file)  # TODO change url to server path
+
         
     def capture(self):
         '''
@@ -58,8 +60,10 @@ class CameraScreen(Screen):
         '''
         camera = self.ids['camera']
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        camera.export_to_png("IMG_{}.png".format(timestr))
+        #camera.export_to_png("IMG_{}.png".format(timestr))
+        image = camera.texture.pixels
         print("Captured")
+        self.sendImage(image)
         self.manager.current = 'Main Screen'
 
 class LostAnimalScreen(Screen):

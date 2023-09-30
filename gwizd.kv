@@ -40,6 +40,7 @@
 
 <ReportScreen>:
         BoxLayout:
+                orientation: 'vertical'
                 Button:
                         text: 'Report seen animal'
                         on_press: root.manager.current = 'Camera Screen'
@@ -70,13 +71,29 @@
 
 <LostAnimalScreen>:
         BoxLayout:
+                orientation: 'vertical'
+                Button:
+                        text: 'Upload photo'
+                        on_press: root.photo_upload()
+                Label:
+                        text: 'Animal type'
                 TextInput
+
+                Label:
+                        text: 'Animal name'
+                TextInput
+
+                Label:
+                        text: 'Last seen'
+                TextInput
+
+                Label:
+                        text: 'Additional information'
+                TextInput
+
                 Button:
-                        text: 'Report lost animal'
-                        on_press: root.manager.current = 'Camera Screen'
-                Button:
-                        text: 'Report'
+                        text: 'Send'
                         on_press: root.manager.current = 'Main Screen'
                 Button:
                         text: 'Go back'
-                        on_press: root.manager.current = 'Main Screen'
+                        on_press: root.manager.current = 'Report Screen'

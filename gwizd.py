@@ -9,6 +9,8 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 import requests
 import cv2
 
+# from plyer import gps
+
 
 class MainButtons(AnchorLayout):
     def __init__(self, **kwargs):
@@ -18,16 +20,16 @@ class MainButtons(AnchorLayout):
 
     def add_click(self):
         print("Clicked add animal")
-        #self.sendImage()
+        # self.sendImage()
         self.parent.manager.current = "Report Screen"
-
 
     def gps_click(self):
         print("Localizing")
 
     def alerts_click(self):
         print("Showing alerts")
-        
+
+
 class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
@@ -46,31 +48,40 @@ class ReportScreen(Screen):
 class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
-    
+
     def sendImage(self, im):
         image = cv2.imread("dog.jpg")
-        upload_file = {"Uploaded file": image, "location": (51,28)}
-        r = requests.post(url, files=upload_file)  # TODO change url to server path
+        # upload_file = {"Uploaded file": image, "location": (51, 28)}
+        # r = requests.post("localhost", files=upload_file)
 
-        
     def capture(self):
-        '''
+        """
         Function to capture the images and give them the names
         according to their captured time and date.
-        '''
-        camera = self.ids['camera']
+        """
+        camera = self.ids["camera"]
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        #camera.export_to_png("IMG_{}.png".format(timestr))
+        # camera.export_to_png("IMG_{}.png".format(timestr))
         image = camera.texture.pixels
         print("Captured")
         self.sendImage(image)
-        self.manager.current = 'Main Screen'
+        self.manager.current = "Main Screen"
+
 
 class LostAnimalScreen(Screen):
     pass
 
 
 class Gwizd(App):
+    def on_start(self):
+        super().on_start()
+        # gps.configure(on_location=self.on_gps_location)
+        # gps.start()
+
+    # def on_gps_location(self, **kwargs):
+    #     print(kwargs["lat"])
+    #     print(kwargs["lon"])
+
     def build(self):
         sm = ScreenManager()
         sm.add_widget(MainScreen(name="Main Screen"))

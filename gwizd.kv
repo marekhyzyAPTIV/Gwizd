@@ -38,10 +38,45 @@
                 height: '48dp'
                 on_press: root.capture()
 
-<SettingsScreen>:
+<ReportScreen>:
         BoxLayout:
                 Button:
-                        text: 'My settings button'
+                        text: 'Report seen animal'
+                        on_press: root.manager.current = 'Camera Screen'
                 Button:
-                        text: 'Back to menu'
-                        on_press: root.manager.current = 'menu'
+                        text: 'Report lost animal'
+                        on_press: root.manager.current = 'Lost Animal Screen'
+                Button:
+                        text: 'Go back'
+                        on_press: root.manager.current = 'Main Screen'
+
+<CameraScreen>:
+        BoxLayout:
+                orientation: 'vertical'
+                Camera:
+                        id: camera
+                        resolution: (640, 480)
+                        play: True
+                Button:
+                        text: 'Capture'
+                        size_hint_y: None
+                        height: '48dp'
+                        on_press: root.capture()
+                Button:
+                        text: 'Bo back'
+                        size_hint_y: None
+                        height: '48dp'
+                        on_press: root.manager.current = 'Report Screen'
+
+<LostAnimalScreen>:
+        BoxLayout:
+                TextInput
+                Button:
+                        text: 'Report lost animal'
+                        on_press: root.manager.current = 'Camera Screen'
+                Button:
+                        text: 'Report'
+                        on_press: root.manager.current = 'Main Screen'
+                Button:
+                        text: 'Go back'
+                        on_press: root.manager.current = 'Main Screen'

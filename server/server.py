@@ -9,7 +9,10 @@ import base64
 from PIL import Image
 import io
 
-PATH_JSON = Path("animals.json")
+from class_recognition import do_inference
+
+PATH_JSON = Path(__file__).parent / Path("animals.json")
+PATH_DB = Path(__file__).parent / Path("server.db")
 
 def create_db(path: Path):
     conn = sqlite3.connect(path)
@@ -114,6 +117,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             img_bytes = base64.b64decode(payload["Uploaded file"].encode('utf-8'))
             img = Image.open(io.BytesIO(img_bytes))
             img.save("received.jpg")
+            class_name, score, embeddings = do_inference(img)
+            logging.info(f"class_name: {class_name}, score: {score}, embeddings: {embeddings}")
 
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
@@ -133,7 +138,7 @@ def run_server(request_handler, port=8080):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    path_db = Path("server.db")
+    path_db = PATH_DB
     if not path_db.exists():
         conn = create_db(path_db)
     else:

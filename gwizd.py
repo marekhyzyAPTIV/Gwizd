@@ -109,17 +109,21 @@ class CameraScreen(Screen):
         image_id = send_image(image)
         seen_animal = get_animal(image_id)
 
-        print(
-            f"Recognized: {seen_animal['name']}, {seen_animal['description']}, Dangerous: {'yes' if seen_animal['dangerous'] else 'no'}"
-        )
+        self.manager.screens[4].ids[
+            "animal_type"
+        ].text = f"Recognized animal: {seen_animal['name']}"
+        self.manager.screens[4].ids[
+            "animal_description"
+        ].text = f"Description: {seen_animal['description']}"
+        self.manager.screens[4].ids[
+            "is_dangerous"
+        ].text = f"Dangerous?: {'yes' if seen_animal['dangerous'] else 'no'}"
+        self.manager.current = "Animal Description Screen"
 
-        self.manager.current = "Main Screen"
 
-
-class ReportWildScreen(Screen):
-    # Receive animal classification
-    # Show editable interface - (Make new photo, animal type - possibility to correct, SEND)
-    pass
+class AnimalDescriptionScreen(Screen):
+    def __init__(self, **kwargs):
+        super(AnimalDescriptionScreen, self).__init__(**kwargs)
 
 
 class LostAnimalScreen(Screen):
@@ -162,6 +166,7 @@ class Gwizd(App):
         sm.add_widget(ReportScreen(name="Report Screen"))
         sm.add_widget(CameraScreen(name="Camera Screen"))
         sm.add_widget(LostAnimalScreen(name="Lost Animal Screen"))
+        sm.add_widget(AnimalDescriptionScreen(name="Animal Description Screen"))
         return sm
 
 

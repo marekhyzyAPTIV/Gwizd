@@ -16,11 +16,13 @@ from io import BytesIO
 import json
 from kivy.uix.popup import Popup
 import os
+
 # import cv2
 
 # from plyer import gps
 
-def sendImage(img: Image.Image):
+
+def send_image(img: Image.Image):
     buffer = BytesIO()
     img.save(buffer, format="png")
     im_base = base64.b64encode(buffer.getvalue()).decode("utf8")
@@ -37,11 +39,25 @@ def sendImage(img: Image.Image):
     if r.status_code == 200:
         image_id = int(r.text)
         print(f"Image sent, id: {image_id}")
-            
+        return image_id
+    return None
+
+
+def get_animal(image_id):
+    predictions_response = requests.get("http://localhost:8080/get-images")
+    animals_response = requests.get(
+        "http://localhost:8080/get-animals",
+    )
+    predictions = json.loads(predictions_response.content.decode("utf-8"))
+    animals = json.loads(animals_response.content.decode("utf-8"))
+    return animals[str(predictions[str(image_id)]["animal_id"])]
+
+
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
-    
+
+
 class MainButtons(AnchorLayout):
     def __init__(self, **kwargs):
         super(MainButtons, self).__init__(**kwargs)
@@ -50,11 +66,14 @@ class MainButtons(AnchorLayout):
 
     def add_click(self):
         print("Clicked add animal")
-        # self.sendImage()
         self.parent.manager.current = "Report Screen"
 
     def gps_click(self):
         print("Localizing")
+        krakow_gps = (19.9450, 50.0647)
+        self.parent.children[1].lon = krakow_gps[0]
+        self.parent.children[1].lat = krakow_gps[1]
+        self.parent.children[1].zoom = 10
 
     def alerts_click(self):
         print("Showing alerts")
@@ -112,7 +131,6 @@ class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
 
-
     def capture(self):
         """
         Function to capture the images and give them the names
@@ -120,19 +138,29 @@ class CameraScreen(Screen):
         """
         camera = self.ids["camera"]
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        size=camera.texture.size
-        frame=camera.texture.pixels
-        image = Image.frombytes(mode='RGBA', size=size,data=frame).convert('RGB')
+        size = camera.texture.size
+        frame = camera.texture.pixels
+        image = Image.frombytes(mode="RGBA", size=size, data=frame).convert("RGB")
         # image.save("IMG_{}.png".format(timestr))
         print("Captured")
-        sendImage(image)
-        self.manager.current = "Main Screen"
+        image_id = send_image(image)
+        seen_animal = get_animal(image_id)
+
+        self.manager.screens[4].ids[
+            "animal_type"
+        ].text = f"Recognized animal: {seen_animal['name']}"
+        self.manager.screens[4].ids[
+            "animal_description"
+        ].text = f"Description: {seen_animal['description']}"
+        self.manager.screens[4].ids[
+            "is_dangerous"
+        ].text = f"Dangerous?: {'yes' if seen_animal['dangerous'] else 'no'}"
+        self.manager.current = "Animal Description Screen"
 
 
-class ReportWildScreen(Screen):
-    # Receive animal classification
-    # Show editable interface - (Make new photo, animal type - possibility to correct, SEND)
-    pass
+class AnimalDescriptionScreen(Screen):
+    def __init__(self, **kwargs):
+        super(AnimalDescriptionScreen, self).__init__(**kwargs)
 
 
 class LostAnimalScreen(Screen):
@@ -144,17 +172,18 @@ class LostAnimalScreen(Screen):
     # Show prediction, text fields: (Animal name, last seen, additional info)
     def dismiss_popup(self):
         self._popup.dismiss()
-    
+
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as f:
             image = Image.open(f.name)
-        sendImage(image)
+        image_id = send_image(image)
+        seen_animal = get_animal(image_id)
+        self.ids["animal_type"].text = seen_animal["name"]
         self.dismiss_popup()
-        
+
     def photo_upload(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
-        self._popup = Popup(title="Load file", content=content,
-                            size_hint=(0.9, 0.9))
+        self._popup = Popup(title="Load file", content=content, size_hint=(0.9, 0.9))
         self._popup.open()
 
 
@@ -174,6 +203,7 @@ class Gwizd(App):
         sm.add_widget(ReportScreen(name="Report Screen"))
         sm.add_widget(CameraScreen(name="Camera Screen"))
         sm.add_widget(LostAnimalScreen(name="Lost Animal Screen"))
+        sm.add_widget(AnimalDescriptionScreen(name="Animal Description Screen"))
         return sm
 
 

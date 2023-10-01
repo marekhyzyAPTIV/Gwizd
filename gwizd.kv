@@ -69,6 +69,24 @@
                         height: '48dp'
                         on_press: root.manager.current = 'Report Screen'
 
+<AnimalDescriptionScreen>:
+        BoxLayout:
+                orientation: 'vertical'
+                Label:
+                        id: animal_type
+                        text: 'Recognized animal: '
+                Label: 
+                        id: animal_description
+                        text: 'Description: '
+                Label:
+                        id: is_dangerous
+                        text: 'Dangerous?: '
+                Button:
+                        text: 'Bo back'
+                        size_hint_y: None
+                        height: '48dp'
+                        on_press: root.manager.current = 'Report Screen'
+
 <LostAnimalScreen>:
         FloatLayout:
                 BoxLayout:
@@ -78,7 +96,8 @@
                                 on_press: root.photo_upload()
                         Label:
                                 text: 'Animal type'
-                        TextInput
+                        TextInput:
+                                id: animal_type
 
                         Label:
                                 text: 'Animal name'

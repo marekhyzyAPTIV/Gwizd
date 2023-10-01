@@ -1,22 +1,44 @@
 from kivy.app import App
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.widget import Widget
 from kivy_garden.mapview import MapView
 import time
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.properties import ObjectProperty
 import requests
 import base64
 from PIL import Image
 from io import BytesIO
 import json
-
+from kivy.uix.popup import Popup
+import os
 # import cv2
 
 # from plyer import gps
 
+def sendImage(img: Image.Image):
+    buffer = BytesIO()
+    img.save(buffer, format="png")
+    im_base = base64.b64encode(buffer.getvalue()).decode("utf8")
+    payload = json.dumps(
+        {"Uploaded file": im_base, "latitude": "50.0647", "longitude": "19.9450"}
+    )
+    headers = {"Content-type": "application/json", "Accept": "text/plain"}
 
+    r = requests.post(
+        "http://localhost:8080/init-report",
+        data=payload,
+        headers=headers,
+    )
+    if r.status_code == 200:
+        image_id = int(r.text)
+        print(f"Image sent, id: {image_id}")
+            
+class LoadDialog(FloatLayout):
+    load = ObjectProperty(None)
+    cancel = ObjectProperty(None)
+    
 class MainButtons(AnchorLayout):
     def __init__(self, **kwargs):
         super(MainButtons, self).__init__(**kwargs)
@@ -40,7 +62,6 @@ class MainScreen(Screen):
         super(MainScreen, self).__init__(**kwargs)
         main_buttons = MainButtons()
         mapview = MapView(zoom=6, lat=51.91, lon=19.08)
-        # layout = RelativeLayout()
         self.add_widget(mapview)
         self.add_widget(main_buttons)
 
@@ -54,23 +75,6 @@ class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
 
-    def sendImage(self, img: Image.Image):
-        buffer = BytesIO()
-        img.save(buffer, format="png")
-        im_base = base64.b64encode(buffer.getvalue()).decode("utf8")
-        payload = json.dumps(
-            {"Uploaded file": im_base, "latitude": "50.0647", "longitude": "19.9450"}
-        )
-        headers = {"Content-type": "application/json", "Accept": "text/plain"}
-
-        r = requests.post(
-            "http://localhost:8080/init-report",
-            data=payload,
-            headers=headers,
-        )
-        if r.status_code == 200:
-            image_id = int(r.text)
-            print(f"Image sent, id: {image_id}")
 
     def capture(self):
         """
@@ -84,7 +88,7 @@ class CameraScreen(Screen):
         image = Image.frombytes(mode='RGBA', size=size,data=frame).convert('RGB')
         # image.save("IMG_{}.png".format(timestr))
         print("Captured")
-        self.sendImage(image)
+        sendImage(image)
         self.manager.current = "Main Screen"
 
 
@@ -101,8 +105,20 @@ class LostAnimalScreen(Screen):
     # Upload photo -> Wait for response
     # If not uploaded -> Type in animal type by user
     # Show prediction, text fields: (Animal name, last seen, additional info)
+    def dismiss_popup(self):
+        self._popup.dismiss()
+    
+    def load(self, path, filename):
+        with open(os.path.join(path, filename[0])) as f:
+            image = Image.open(f.name)
+        sendImage(image)
+        self.dismiss_popup()
+        
     def photo_upload(self):
-        pass
+        content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
+        self._popup = Popup(title="Load file", content=content,
+                            size_hint=(0.9, 0.9))
+        self._popup.open()
 
 
 class Gwizd(App):

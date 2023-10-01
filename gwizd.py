@@ -13,9 +13,11 @@ from io import BytesIO
 import json
 from kivy.uix.popup import Popup
 import os
+
 # import cv2
 
 # from plyer import gps
+
 
 def send_image(img: Image.Image):
     buffer = BytesIO()
@@ -36,22 +38,23 @@ def send_image(img: Image.Image):
         print(f"Image sent, id: {image_id}")
         return image_id
     return None
-            
+
+
 def get_animal(image_id):
-    predictions_response = requests.get(
-            "http://localhost:8080/get-images"
-        )
+    predictions_response = requests.get("http://localhost:8080/get-images")
     animals_response = requests.get(
         "http://localhost:8080/get-animals",
     )
-    predictions = json.loads(predictions_response.content.decode('utf-8'))
-    animals = json.loads(animals_response.content.decode('utf-8'))
-    return animals[str(predictions[str(image_id)]['animal_id'])]
+    predictions = json.loads(predictions_response.content.decode("utf-8"))
+    animals = json.loads(animals_response.content.decode("utf-8"))
+    return animals[str(predictions[str(image_id)]["animal_id"])]
+
 
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
-    
+
+
 class MainButtons(AnchorLayout):
     def __init__(self, **kwargs):
         super(MainButtons, self).__init__(**kwargs)
@@ -64,7 +67,7 @@ class MainButtons(AnchorLayout):
 
     def gps_click(self):
         print("Localizing")
-        krakow_gps = (19.5611, 50.0341)
+        krakow_gps = (19.9450, 50.0647)
         self.parent.children[1].lon = krakow_gps[0]
         self.parent.children[1].lat = krakow_gps[1]
         self.parent.children[1].zoom = 10
@@ -91,7 +94,6 @@ class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
 
-
     def capture(self):
         """
         Function to capture the images and give them the names
@@ -99,16 +101,18 @@ class CameraScreen(Screen):
         """
         camera = self.ids["camera"]
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        size=camera.texture.size
-        frame=camera.texture.pixels
-        image = Image.frombytes(mode='RGBA', size=size,data=frame).convert('RGB')
+        size = camera.texture.size
+        frame = camera.texture.pixels
+        image = Image.frombytes(mode="RGBA", size=size, data=frame).convert("RGB")
         # image.save("IMG_{}.png".format(timestr))
         print("Captured")
         image_id = send_image(image)
         seen_animal = get_animal(image_id)
-        
-        print(f"Recognized: {seen_animal['name']}, {seen_animal['description']}, Dangerous: {'yes' if seen_animal['dangerous'] else 'no'}")
-    
+
+        print(
+            f"Recognized: {seen_animal['name']}, {seen_animal['description']}, Dangerous: {'yes' if seen_animal['dangerous'] else 'no'}"
+        )
+
         self.manager.current = "Main Screen"
 
 
@@ -127,19 +131,18 @@ class LostAnimalScreen(Screen):
     # Show prediction, text fields: (Animal name, last seen, additional info)
     def dismiss_popup(self):
         self._popup.dismiss()
-    
+
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as f:
             image = Image.open(f.name)
         image_id = send_image(image)
         seen_animal = get_animal(image_id)
-        self.ids['animal_type'].text = seen_animal['name']
+        self.ids["animal_type"].text = seen_animal["name"]
         self.dismiss_popup()
-        
+
     def photo_upload(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
-        self._popup = Popup(title="Load file", content=content,
-                            size_hint=(0.9, 0.9))
+        self._popup = Popup(title="Load file", content=content, size_hint=(0.9, 0.9))
         self._popup.open()
 
 

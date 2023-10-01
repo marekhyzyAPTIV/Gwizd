@@ -2,7 +2,10 @@ from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.anchorlayout import AnchorLayout
 from kivy.uix.widget import Widget
-from kivy_garden.mapview import MapView
+from kivy.uix.label import Label
+from kivy.graphics import Ellipse, Color
+from kivy.clock import Clock
+from kivy_garden.mapview import MapView, MapMarkerPopup
 import time
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import ObjectProperty
@@ -61,10 +64,44 @@ class MainScreen(Screen):
     def __init__(self, **kwargs):
         super(MainScreen, self).__init__(**kwargs)
         main_buttons = MainButtons()
-        mapview = MapView(zoom=6, lat=51.91, lon=19.08)
-        self.add_widget(mapview)
+        self.mapview = MapView(zoom=10, lat=50.00, lon=19.90)
+        self.add_widget(self.mapview)
         self.add_widget(main_buttons)
+        self.points = []
+        self.points_ts = []
+        self.circles = []
+        self.update_reports()
+        Clock.schedule_interval(self.update_circles, 1/30)
 
+    def update_reports(self):
+        r = requests.get("http://localhost:8080/get-reports")
+        if r.status_code == 200:
+            timestamp_now = time.time()
+            json_dict = r.json()
+            for value in json_dict.values():
+                point = MapMarkerPopup(lat=value["latitude"], lon=value["longitude"])
+                point.anchor_x
+                point.add_widget(Label(text=str(value["animal_id"]), color=(0, 0, 0)))
+                self.mapview.add_marker(point)
+                self.points.append(point)
+                timestamp = value["timestamp"]
+                self.points_ts.append(timestamp)
+                with self.canvas:
+                    ts_diff = (timestamp_now - timestamp)
+                    radius = max(3, ts_diff / 60)
+                    alpha = max(0, 2*60*60 - ts_diff) / (2*60*60)
+                    Color(1, 0, 0, alpha)
+                    circle = Ellipse(pos=point.pos, size=(radius, radius))
+                    self.circles.append(circle)
+
+    def update_circles(self, *args):
+        timestamp_now = time.time()
+        with self.canvas:
+                for point, timestamp, circle in zip(self.points, self.points_ts, self.circles):
+                    ts_diff = (timestamp_now - timestamp)
+                    radius = max(3, ts_diff / 60)
+                    circle.size = (radius, radius)
+                    circle.pos = point.pos
 
 class ReportScreen(Screen):
     def __init__(self, **kwargs):

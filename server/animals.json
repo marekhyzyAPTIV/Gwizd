@@ -1,22 +1,1992 @@
 [
-    {
-        "name": "Unknown",
-        "description": "Unknown animal",
-        "dangerous": false
-    },
-    {
-        "name": "Pies",
-        "description": "Opis psa",
-        "dangerous": false
-    },
-    {
-        "name": "Kot",
-        "description": "Opis kota",
-        "dangerous": false
-    },
-    {
-        "name": "Lis",
-        "description": "Opis lisa",
-        "dangerous": true
-    }
+  {
+    "name": "Unknown",
+    "description": "Unknown animal",
+    "dangerous": false
+  },
+  {
+    "name": "tench",
+    "description": "tench description",
+    "dangerous": true
+  },
+  {
+    "name": "goldfish",
+    "description": "goldfish description",
+    "dangerous": true
+  },
+  {
+    "name": "great white shark",
+    "description": "great white shark description",
+    "dangerous": true
+  },
+  {
+    "name": "tiger shark",
+    "description": "tiger shark description",
+    "dangerous": true
+  },
+  {
+    "name": "hammerhead",
+    "description": "hammerhead description",
+    "dangerous": true
+  },
+  {
+    "name": "electric ray",
+    "description": "electric ray description",
+    "dangerous": true
+  },
+  {
+    "name": "stingray",
+    "description": "stingray description",
+    "dangerous": true
+  },
+  {
+    "name": "cock",
+    "description": "cock description",
+    "dangerous": true
+  },
+  {
+    "name": "hen",
+    "description": "hen description",
+    "dangerous": true
+  },
+  {
+    "name": "ostrich",
+    "description": "ostrich description",
+    "dangerous": true
+  },
+  {
+    "name": "brambling",
+    "description": "brambling description",
+    "dangerous": true
+  },
+  {
+    "name": "goldfinch",
+    "description": "goldfinch description",
+    "dangerous": true
+  },
+  {
+    "name": "house finch",
+    "description": "house finch description",
+    "dangerous": true
+  },
+  {
+    "name": "junco",
+    "description": "junco description",
+    "dangerous": true
+  },
+  {
+    "name": "indigo bunting",
+    "description": "indigo bunting description",
+    "dangerous": true
+  },
+  {
+    "name": "robin",
+    "description": "robin description",
+    "dangerous": true
+  },
+  {
+    "name": "bulbul",
+    "description": "bulbul description",
+    "dangerous": true
+  },
+  {
+    "name": "jay",
+    "description": "jay description",
+    "dangerous": true
+  },
+  {
+    "name": "magpie",
+    "description": "magpie description",
+    "dangerous": true
+  },
+  {
+    "name": "chickadee",
+    "description": "chickadee description",
+    "dangerous": true
+  },
+  {
+    "name": "water ouzel",
+    "description": "water ouzel description",
+    "dangerous": true
+  },
+  {
+    "name": "kite",
+    "description": "kite description",
+    "dangerous": true
+  },
+  {
+    "name": "bald eagle",
+    "description": "bald eagle description",
+    "dangerous": true
+  },
+  {
+    "name": "vulture",
+    "description": "vulture description",
+    "dangerous": true
+  },
+  {
+    "name": "great grey owl",
+    "description": "great grey owl description",
+    "dangerous": true
+  },
+  {
+    "name": "European fire salamander",
+    "description": "European fire salamander description",
+    "dangerous": true
+  },
+  {
+    "name": "common newt",
+    "description": "common newt description",
+    "dangerous": true
+  },
+  {
+    "name": "eft",
+    "description": "eft description",
+    "dangerous": true
+  },
+  {
+    "name": "spotted salamander",
+    "description": "spotted salamander description",
+    "dangerous": true
+  },
+  {
+    "name": "axolotl",
+    "description": "axolotl description",
+    "dangerous": true
+  },
+  {
+    "name": "bullfrog",
+    "description": "bullfrog description",
+    "dangerous": true
+  },
+  {
+    "name": "tree frog",
+    "description": "tree frog description",
+    "dangerous": true
+  },
+  {
+    "name": "tailed frog",
+    "description": "tailed frog description",
+    "dangerous": true
+  },
+  {
+    "name": "loggerhead",
+    "description": "loggerhead description",
+    "dangerous": true
+  },
+  {
+    "name": "leatherback turtle",
+    "description": "leatherback turtle description",
+    "dangerous": true
+  },
+  {
+    "name": "mud turtle",
+    "description": "mud turtle description",
+    "dangerous": true
+  },
+  {
+    "name": "terrapin",
+    "description": "terrapin description",
+    "dangerous": true
+  },
+  {
+    "name": "box turtle",
+    "description": "box turtle description",
+    "dangerous": true
+  },
+  {
+    "name": "banded gecko",
+    "description": "banded gecko description",
+    "dangerous": true
+  },
+  {
+    "name": "common iguana",
+    "description": "common iguana description",
+    "dangerous": true
+  },
+  {
+    "name": "American chameleon",
+    "description": "American chameleon description",
+    "dangerous": true
+  },
+  {
+    "name": "whiptail",
+    "description": "whiptail description",
+    "dangerous": true
+  },
+  {
+    "name": "agama",
+    "description": "agama description",
+    "dangerous": true
+  },
+  {
+    "name": "frilled lizard",
+    "description": "frilled lizard description",
+    "dangerous": true
+  },
+  {
+    "name": "alligator lizard",
+    "description": "alligator lizard description",
+    "dangerous": true
+  },
+  {
+    "name": "Gila monster",
+    "description": "Gila monster description",
+    "dangerous": true
+  },
+  {
+    "name": "green lizard",
+    "description": "green lizard description",
+    "dangerous": true
+  },
+  {
+    "name": "African chameleon",
+    "description": "African chameleon description",
+    "dangerous": true
+  },
+  {
+    "name": "Komodo dragon",
+    "description": "Komodo dragon description",
+    "dangerous": true
+  },
+  {
+    "name": "African crocodile",
+    "description": "African crocodile description",
+    "dangerous": true
+  },
+  {
+    "name": "American alligator",
+    "description": "American alligator description",
+    "dangerous": true
+  },
+  {
+    "name": "triceratops",
+    "description": "triceratops description",
+    "dangerous": true
+  },
+  {
+    "name": "thunder snake",
+    "description": "thunder snake description",
+    "dangerous": true
+  },
+  {
+    "name": "ringneck snake",
+    "description": "ringneck snake description",
+    "dangerous": true
+  },
+  {
+    "name": "hognose snake",
+    "description": "hognose snake description",
+    "dangerous": true
+  },
+  {
+    "name": "green snake",
+    "description": "green snake description",
+    "dangerous": true
+  },
+  {
+    "name": "king snake",
+    "description": "king snake description",
+    "dangerous": true
+  },
+  {
+    "name": "garter snake",
+    "description": "garter snake description",
+    "dangerous": true
+  },
+  {
+    "name": "water snake",
+    "description": "water snake description",
+    "dangerous": true
+  },
+  {
+    "name": "vine snake",
+    "description": "vine snake description",
+    "dangerous": true
+  },
+  {
+    "name": "night snake",
+    "description": "night snake description",
+    "dangerous": true
+  },
+  {
+    "name": "boa constrictor",
+    "description": "boa constrictor description",
+    "dangerous": true
+  },
+  {
+    "name": "rock python",
+    "description": "rock python description",
+    "dangerous": true
+  },
+  {
+    "name": "Indian cobra",
+    "description": "Indian cobra description",
+    "dangerous": true
+  },
+  {
+    "name": "green mamba",
+    "description": "green mamba description",
+    "dangerous": true
+  },
+  {
+    "name": "sea snake",
+    "description": "sea snake description",
+    "dangerous": true
+  },
+  {
+    "name": "horned viper",
+    "description": "horned viper description",
+    "dangerous": true
+  },
+  {
+    "name": "diamondback",
+    "description": "diamondback description",
+    "dangerous": true
+  },
+  {
+    "name": "sidewinder",
+    "description": "sidewinder description",
+    "dangerous": true
+  },
+  {
+    "name": "trilobite",
+    "description": "trilobite description",
+    "dangerous": true
+  },
+  {
+    "name": "harvestman",
+    "description": "harvestman description",
+    "dangerous": true
+  },
+  {
+    "name": "scorpion",
+    "description": "scorpion description",
+    "dangerous": true
+  },
+  {
+    "name": "black and gold garden spider",
+    "description": "black and gold garden spider description",
+    "dangerous": true
+  },
+  {
+    "name": "barn spider",
+    "description": "barn spider description",
+    "dangerous": true
+  },
+  {
+    "name": "garden spider",
+    "description": "garden spider description",
+    "dangerous": true
+  },
+  {
+    "name": "black widow",
+    "description": "black widow description",
+    "dangerous": true
+  },
+  {
+    "name": "tarantula",
+    "description": "tarantula description",
+    "dangerous": true
+  },
+  {
+    "name": "wolf spider",
+    "description": "wolf spider description",
+    "dangerous": true
+  },
+  {
+    "name": "tick",
+    "description": "tick description",
+    "dangerous": true
+  },
+  {
+    "name": "centipede",
+    "description": "centipede description",
+    "dangerous": true
+  },
+  {
+    "name": "black grouse",
+    "description": "black grouse description",
+    "dangerous": true
+  },
+  {
+    "name": "ptarmigan",
+    "description": "ptarmigan description",
+    "dangerous": true
+  },
+  {
+    "name": "ruffed grouse",
+    "description": "ruffed grouse description",
+    "dangerous": true
+  },
+  {
+    "name": "prairie chicken",
+    "description": "prairie chicken description",
+    "dangerous": true
+  },
+  {
+    "name": "peacock",
+    "description": "peacock description",
+    "dangerous": true
+  },
+  {
+    "name": "quail",
+    "description": "quail description",
+    "dangerous": true
+  },
+  {
+    "name": "partridge",
+    "description": "partridge description",
+    "dangerous": true
+  },
+  {
+    "name": "African grey",
+    "description": "African grey description",
+    "dangerous": true
+  },
+  {
+    "name": "macaw",
+    "description": "macaw description",
+    "dangerous": true
+  },
+  {
+    "name": "sulphur-crested cockatoo",
+    "description": "sulphur-crested cockatoo description",
+    "dangerous": true
+  },
+  {
+    "name": "lorikeet",
+    "description": "lorikeet description",
+    "dangerous": true
+  },
+  {
+    "name": "coucal",
+    "description": "coucal description",
+    "dangerous": true
+  },
+  {
+    "name": "bee eater",
+    "description": "bee eater description",
+    "dangerous": true
+  },
+  {
+    "name": "hornbill",
+    "description": "hornbill description",
+    "dangerous": true
+  },
+  {
+    "name": "hummingbird",
+    "description": "hummingbird description",
+    "dangerous": true
+  },
+  {
+    "name": "jacamar",
+    "description": "jacamar description",
+    "dangerous": true
+  },
+  {
+    "name": "toucan",
+    "description": "toucan description",
+    "dangerous": true
+  },
+  {
+    "name": "drake",
+    "description": "drake description",
+    "dangerous": true
+  },
+  {
+    "name": "red-breasted merganser",
+    "description": "red-breasted merganser description",
+    "dangerous": true
+  },
+  {
+    "name": "goose",
+    "description": "goose description",
+    "dangerous": true
+  },
+  {
+    "name": "black swan",
+    "description": "black swan description",
+    "dangerous": true
+  },
+  {
+    "name": "tusker",
+    "description": "tusker description",
+    "dangerous": true
+  },
+  {
+    "name": "echidna",
+    "description": "echidna description",
+    "dangerous": true
+  },
+  {
+    "name": "platypus",
+    "description": "platypus description",
+    "dangerous": true
+  },
+  {
+    "name": "wallaby",
+    "description": "wallaby description",
+    "dangerous": true
+  },
+  {
+    "name": "koala",
+    "description": "koala description",
+    "dangerous": true
+  },
+  {
+    "name": "wombat",
+    "description": "wombat description",
+    "dangerous": true
+  },
+  {
+    "name": "jellyfish",
+    "description": "jellyfish description",
+    "dangerous": true
+  },
+  {
+    "name": "sea anemone",
+    "description": "sea anemone description",
+    "dangerous": true
+  },
+  {
+    "name": "brain coral",
+    "description": "brain coral description",
+    "dangerous": true
+  },
+  {
+    "name": "flatworm",
+    "description": "flatworm description",
+    "dangerous": true
+  },
+  {
+    "name": "nematode",
+    "description": "nematode description",
+    "dangerous": true
+  },
+  {
+    "name": "conch",
+    "description": "conch description",
+    "dangerous": true
+  },
+  {
+    "name": "snail",
+    "description": "snail description",
+    "dangerous": true
+  },
+  {
+    "name": "slug",
+    "description": "slug description",
+    "dangerous": true
+  },
+  {
+    "name": "sea slug",
+    "description": "sea slug description",
+    "dangerous": true
+  },
+  {
+    "name": "chiton",
+    "description": "chiton description",
+    "dangerous": true
+  },
+  {
+    "name": "chambered nautilus",
+    "description": "chambered nautilus description",
+    "dangerous": true
+  },
+  {
+    "name": "Dungeness crab",
+    "description": "Dungeness crab description",
+    "dangerous": true
+  },
+  {
+    "name": "rock crab",
+    "description": "rock crab description",
+    "dangerous": true
+  },
+  {
+    "name": "fiddler crab",
+    "description": "fiddler crab description",
+    "dangerous": true
+  },
+  {
+    "name": "king crab",
+    "description": "king crab description",
+    "dangerous": true
+  },
+  {
+    "name": "American lobster",
+    "description": "American lobster description",
+    "dangerous": true
+  },
+  {
+    "name": "spiny lobster",
+    "description": "spiny lobster description",
+    "dangerous": true
+  },
+  {
+    "name": "crayfish",
+    "description": "crayfish description",
+    "dangerous": true
+  },
+  {
+    "name": "hermit crab",
+    "description": "hermit crab description",
+    "dangerous": true
+  },
+  {
+    "name": "isopod",
+    "description": "isopod description",
+    "dangerous": true
+  },
+  {
+    "name": "white stork",
+    "description": "white stork description",
+    "dangerous": true
+  },
+  {
+    "name": "black stork",
+    "description": "black stork description",
+    "dangerous": true
+  },
+  {
+    "name": "spoonbill",
+    "description": "spoonbill description",
+    "dangerous": true
+  },
+  {
+    "name": "flamingo",
+    "description": "flamingo description",
+    "dangerous": true
+  },
+  {
+    "name": "little blue heron",
+    "description": "little blue heron description",
+    "dangerous": true
+  },
+  {
+    "name": "American egret",
+    "description": "American egret description",
+    "dangerous": true
+  },
+  {
+    "name": "bittern",
+    "description": "bittern description",
+    "dangerous": true
+  },
+  {
+    "name": "crane bird",
+    "description": "crane bird description",
+    "dangerous": true
+  },
+  {
+    "name": "limpkin",
+    "description": "limpkin description",
+    "dangerous": true
+  },
+  {
+    "name": "European gallinule",
+    "description": "European gallinule description",
+    "dangerous": true
+  },
+  {
+    "name": "American coot",
+    "description": "American coot description",
+    "dangerous": true
+  },
+  {
+    "name": "bustard",
+    "description": "bustard description",
+    "dangerous": true
+  },
+  {
+    "name": "ruddy turnstone",
+    "description": "ruddy turnstone description",
+    "dangerous": true
+  },
+  {
+    "name": "red-backed sandpiper",
+    "description": "red-backed sandpiper description",
+    "dangerous": true
+  },
+  {
+    "name": "redshank",
+    "description": "redshank description",
+    "dangerous": true
+  },
+  {
+    "name": "dowitcher",
+    "description": "dowitcher description",
+    "dangerous": true
+  },
+  {
+    "name": "oystercatcher",
+    "description": "oystercatcher description",
+    "dangerous": true
+  },
+  {
+    "name": "pelican",
+    "description": "pelican description",
+    "dangerous": true
+  },
+  {
+    "name": "king penguin",
+    "description": "king penguin description",
+    "dangerous": true
+  },
+  {
+    "name": "albatross",
+    "description": "albatross description",
+    "dangerous": true
+  },
+  {
+    "name": "grey whale",
+    "description": "grey whale description",
+    "dangerous": true
+  },
+  {
+    "name": "killer whale",
+    "description": "killer whale description",
+    "dangerous": true
+  },
+  {
+    "name": "dugong",
+    "description": "dugong description",
+    "dangerous": true
+  },
+  {
+    "name": "sea lion",
+    "description": "sea lion description",
+    "dangerous": true
+  },
+  {
+    "name": "timber wolf",
+    "description": "timber wolf description",
+    "dangerous": true
+  },
+  {
+    "name": "white wolf",
+    "description": "white wolf description",
+    "dangerous": true
+  },
+  {
+    "name": "red wolf",
+    "description": "red wolf description",
+    "dangerous": true
+  },
+  {
+    "name": "coyote",
+    "description": "coyote description",
+    "dangerous": true
+  },
+  {
+    "name": "dingo",
+    "description": "dingo description",
+    "dangerous": true
+  },
+  {
+    "name": "dhole",
+    "description": "dhole description",
+    "dangerous": true
+  },
+  {
+    "name": "African hunting dog",
+    "description": "African hunting dog description",
+    "dangerous": true
+  },
+  {
+    "name": "hyena",
+    "description": "hyena description",
+    "dangerous": true
+  },
+  {
+    "name": "red fox",
+    "description": "red fox description",
+    "dangerous": true
+  },
+  {
+    "name": "kit fox",
+    "description": "kit fox description",
+    "dangerous": true
+  },
+  {
+    "name": "Arctic fox",
+    "description": "Arctic fox description",
+    "dangerous": true
+  },
+  {
+    "name": "grey fox",
+    "description": "grey fox description",
+    "dangerous": true
+  },
+  {
+    "name": "cougar",
+    "description": "cougar description",
+    "dangerous": true
+  },
+  {
+    "name": "lynx",
+    "description": "lynx description",
+    "dangerous": true
+  },
+  {
+    "name": "leopard",
+    "description": "leopard description",
+    "dangerous": true
+  },
+  {
+    "name": "snow leopard",
+    "description": "snow leopard description",
+    "dangerous": true
+  },
+  {
+    "name": "jaguar",
+    "description": "jaguar description",
+    "dangerous": true
+  },
+  {
+    "name": "lion",
+    "description": "lion description",
+    "dangerous": true
+  },
+  {
+    "name": "tiger",
+    "description": "tiger description",
+    "dangerous": true
+  },
+  {
+    "name": "cheetah",
+    "description": "cheetah description",
+    "dangerous": true
+  },
+  {
+    "name": "brown bear",
+    "description": "brown bear description",
+    "dangerous": true
+  },
+  {
+    "name": "American black bear",
+    "description": "American black bear description",
+    "dangerous": true
+  },
+  {
+    "name": "ice bear",
+    "description": "ice bear description",
+    "dangerous": true
+  },
+  {
+    "name": "sloth bear",
+    "description": "sloth bear description",
+    "dangerous": true
+  },
+  {
+    "name": "mongoose",
+    "description": "mongoose description",
+    "dangerous": true
+  },
+  {
+    "name": "meerkat",
+    "description": "meerkat description",
+    "dangerous": true
+  },
+  {
+    "name": "tiger beetle",
+    "description": "tiger beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "ladybug",
+    "description": "ladybug description",
+    "dangerous": true
+  },
+  {
+    "name": "ground beetle",
+    "description": "ground beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "long-horned beetle",
+    "description": "long-horned beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "leaf beetle",
+    "description": "leaf beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "dung beetle",
+    "description": "dung beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "rhinoceros beetle",
+    "description": "rhinoceros beetle description",
+    "dangerous": true
+  },
+  {
+    "name": "weevil",
+    "description": "weevil description",
+    "dangerous": true
+  },
+  {
+    "name": "fly",
+    "description": "fly description",
+    "dangerous": true
+  },
+  {
+    "name": "bee",
+    "description": "bee description",
+    "dangerous": true
+  },
+  {
+    "name": "ant",
+    "description": "ant description",
+    "dangerous": true
+  },
+  {
+    "name": "grasshopper",
+    "description": "grasshopper description",
+    "dangerous": true
+  },
+  {
+    "name": "cricket",
+    "description": "cricket description",
+    "dangerous": true
+  },
+  {
+    "name": "walking stick",
+    "description": "walking stick description",
+    "dangerous": true
+  },
+  {
+    "name": "cockroach",
+    "description": "cockroach description",
+    "dangerous": true
+  },
+  {
+    "name": "mantis",
+    "description": "mantis description",
+    "dangerous": true
+  },
+  {
+    "name": "cicada",
+    "description": "cicada description",
+    "dangerous": true
+  },
+  {
+    "name": "leafhopper",
+    "description": "leafhopper description",
+    "dangerous": true
+  },
+  {
+    "name": "lacewing",
+    "description": "lacewing description",
+    "dangerous": true
+  },
+  {
+    "name": "dragonfly",
+    "description": "dragonfly description",
+    "dangerous": true
+  },
+  {
+    "name": "damselfly",
+    "description": "damselfly description",
+    "dangerous": true
+  },
+  {
+    "name": "admiral",
+    "description": "admiral description",
+    "dangerous": true
+  },
+  {
+    "name": "ringlet",
+    "description": "ringlet description",
+    "dangerous": true
+  },
+  {
+    "name": "monarch",
+    "description": "monarch description",
+    "dangerous": true
+  },
+  {
+    "name": "cabbage butterfly",
+    "description": "cabbage butterfly description",
+    "dangerous": true
+  },
+  {
+    "name": "sulphur butterfly",
+    "description": "sulphur butterfly description",
+    "dangerous": true
+  },
+  {
+    "name": "lycaenid",
+    "description": "lycaenid description",
+    "dangerous": true
+  },
+  {
+    "name": "starfish",
+    "description": "starfish description",
+    "dangerous": true
+  },
+  {
+    "name": "sea urchin",
+    "description": "sea urchin description",
+    "dangerous": true
+  },
+  {
+    "name": "sea cucumber",
+    "description": "sea cucumber description",
+    "dangerous": true
+  },
+  {
+    "name": "wood rabbit",
+    "description": "wood rabbit description",
+    "dangerous": true
+  },
+  {
+    "name": "hare",
+    "description": "hare description",
+    "dangerous": true
+  },
+  {
+    "name": "Angora",
+    "description": "Angora description",
+    "dangerous": true
+  },
+  {
+    "name": "hamster",
+    "description": "hamster description",
+    "dangerous": true
+  },
+  {
+    "name": "porcupine",
+    "description": "porcupine description",
+    "dangerous": true
+  },
+  {
+    "name": "fox squirrel",
+    "description": "fox squirrel description",
+    "dangerous": true
+  },
+  {
+    "name": "marmot",
+    "description": "marmot description",
+    "dangerous": true
+  },
+  {
+    "name": "beaver",
+    "description": "beaver description",
+    "dangerous": true
+  },
+  {
+    "name": "guinea pig",
+    "description": "guinea pig description",
+    "dangerous": true
+  },
+  {
+    "name": "sorrel",
+    "description": "sorrel description",
+    "dangerous": true
+  },
+  {
+    "name": "zebra",
+    "description": "zebra description",
+    "dangerous": true
+  },
+  {
+    "name": "hog",
+    "description": "hog description",
+    "dangerous": true
+  },
+  {
+    "name": "wild boar",
+    "description": "wild boar description",
+    "dangerous": true
+  },
+  {
+    "name": "warthog",
+    "description": "warthog description",
+    "dangerous": true
+  },
+  {
+    "name": "hippopotamus",
+    "description": "hippopotamus description",
+    "dangerous": true
+  },
+  {
+    "name": "ox",
+    "description": "ox description",
+    "dangerous": true
+  },
+  {
+    "name": "water buffalo",
+    "description": "water buffalo description",
+    "dangerous": true
+  },
+  {
+    "name": "bison",
+    "description": "bison description",
+    "dangerous": true
+  },
+  {
+    "name": "ram",
+    "description": "ram description",
+    "dangerous": true
+  },
+  {
+    "name": "bighorn",
+    "description": "bighorn description",
+    "dangerous": true
+  },
+  {
+    "name": "ibex",
+    "description": "ibex description",
+    "dangerous": true
+  },
+  {
+    "name": "hartebeest",
+    "description": "hartebeest description",
+    "dangerous": true
+  },
+  {
+    "name": "impala",
+    "description": "impala description",
+    "dangerous": true
+  },
+  {
+    "name": "gazelle",
+    "description": "gazelle description",
+    "dangerous": true
+  },
+  {
+    "name": "Arabian camel",
+    "description": "Arabian camel description",
+    "dangerous": true
+  },
+  {
+    "name": "llama",
+    "description": "llama description",
+    "dangerous": true
+  },
+  {
+    "name": "weasel",
+    "description": "weasel description",
+    "dangerous": true
+  },
+  {
+    "name": "mink",
+    "description": "mink description",
+    "dangerous": true
+  },
+  {
+    "name": "polecat",
+    "description": "polecat description",
+    "dangerous": true
+  },
+  {
+    "name": "black-footed ferret",
+    "description": "black-footed ferret description",
+    "dangerous": true
+  },
+  {
+    "name": "otter",
+    "description": "otter description",
+    "dangerous": true
+  },
+  {
+    "name": "skunk",
+    "description": "skunk description",
+    "dangerous": true
+  },
+  {
+    "name": "badger",
+    "description": "badger description",
+    "dangerous": true
+  },
+  {
+    "name": "armadillo",
+    "description": "armadillo description",
+    "dangerous": true
+  },
+  {
+    "name": "three-toed sloth",
+    "description": "three-toed sloth description",
+    "dangerous": true
+  },
+  {
+    "name": "orangutan",
+    "description": "orangutan description",
+    "dangerous": true
+  },
+  {
+    "name": "gorilla",
+    "description": "gorilla description",
+    "dangerous": true
+  },
+  {
+    "name": "chimpanzee",
+    "description": "chimpanzee description",
+    "dangerous": true
+  },
+  {
+    "name": "gibbon",
+    "description": "gibbon description",
+    "dangerous": true
+  },
+  {
+    "name": "siamang",
+    "description": "siamang description",
+    "dangerous": true
+  },
+  {
+    "name": "guenon",
+    "description": "guenon description",
+    "dangerous": true
+  },
+  {
+    "name": "patas",
+    "description": "patas description",
+    "dangerous": true
+  },
+  {
+    "name": "baboon",
+    "description": "baboon description",
+    "dangerous": true
+  },
+  {
+    "name": "macaque",
+    "description": "macaque description",
+    "dangerous": true
+  },
+  {
+    "name": "langur",
+    "description": "langur description",
+    "dangerous": true
+  },
+  {
+    "name": "colobus",
+    "description": "colobus description",
+    "dangerous": true
+  },
+  {
+    "name": "proboscis monkey",
+    "description": "proboscis monkey description",
+    "dangerous": true
+  },
+  {
+    "name": "marmoset",
+    "description": "marmoset description",
+    "dangerous": true
+  },
+  {
+    "name": "capuchin",
+    "description": "capuchin description",
+    "dangerous": true
+  },
+  {
+    "name": "howler monkey",
+    "description": "howler monkey description",
+    "dangerous": true
+  },
+  {
+    "name": "titi",
+    "description": "titi description",
+    "dangerous": true
+  },
+  {
+    "name": "spider monkey",
+    "description": "spider monkey description",
+    "dangerous": true
+  },
+  {
+    "name": "squirrel monkey",
+    "description": "squirrel monkey description",
+    "dangerous": true
+  },
+  {
+    "name": "Madagascar cat",
+    "description": "Madagascar cat description",
+    "dangerous": true
+  },
+  {
+    "name": "indri",
+    "description": "indri description",
+    "dangerous": true
+  },
+  {
+    "name": "Indian elephant",
+    "description": "Indian elephant description",
+    "dangerous": true
+  },
+  {
+    "name": "African elephant",
+    "description": "African elephant description",
+    "dangerous": true
+  },
+  {
+    "name": "lesser panda",
+    "description": "lesser panda description",
+    "dangerous": true
+  },
+  {
+    "name": "giant panda",
+    "description": "giant panda description",
+    "dangerous": true
+  },
+  {
+    "name": "barracouta",
+    "description": "barracouta description",
+    "dangerous": true
+  },
+  {
+    "name": "eel",
+    "description": "eel description",
+    "dangerous": true
+  },
+  {
+    "name": "coho",
+    "description": "coho description",
+    "dangerous": true
+  },
+  {
+    "name": "rock beauty",
+    "description": "rock beauty description",
+    "dangerous": true
+  },
+  {
+    "name": "anemone fish",
+    "description": "anemone fish description",
+    "dangerous": true
+  },
+  {
+    "name": "sturgeon",
+    "description": "sturgeon description",
+    "dangerous": true
+  },
+  {
+    "name": "gar",
+    "description": "gar description",
+    "dangerous": true
+  },
+  {
+    "name": "lionfish",
+    "description": "lionfish description",
+    "dangerous": true
+  },
+  {
+    "name": "Chihuahua",
+    "description": "Chihuahua description",
+    "dangerous": false
+  },
+  {
+    "name": "Japanese spaniel",
+    "description": "Japanese spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "Maltese dog",
+    "description": "Maltese dog description",
+    "dangerous": false
+  },
+  {
+    "name": "Pekinese",
+    "description": "Pekinese description",
+    "dangerous": false
+  },
+  {
+    "name": "Shih-Tzu",
+    "description": "Shih-Tzu description",
+    "dangerous": false
+  },
+  {
+    "name": "Blenheim spaniel",
+    "description": "Blenheim spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "papillon",
+    "description": "papillon description",
+    "dangerous": false
+  },
+  {
+    "name": "toy terrier",
+    "description": "toy terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Rhodesian ridgeback",
+    "description": "Rhodesian ridgeback description",
+    "dangerous": false
+  },
+  {
+    "name": "Afghan hound",
+    "description": "Afghan hound description",
+    "dangerous": false
+  },
+  {
+    "name": "basset",
+    "description": "basset description",
+    "dangerous": false
+  },
+  {
+    "name": "beagle",
+    "description": "beagle description",
+    "dangerous": false
+  },
+  {
+    "name": "bloodhound",
+    "description": "bloodhound description",
+    "dangerous": false
+  },
+  {
+    "name": "bluetick",
+    "description": "bluetick description",
+    "dangerous": false
+  },
+  {
+    "name": "black-and-tan coonhound",
+    "description": "black-and-tan coonhound description",
+    "dangerous": false
+  },
+  {
+    "name": "Walker hound",
+    "description": "Walker hound description",
+    "dangerous": false
+  },
+  {
+    "name": "English foxhound",
+    "description": "English foxhound description",
+    "dangerous": false
+  },
+  {
+    "name": "redbone",
+    "description": "redbone description",
+    "dangerous": false
+  },
+  {
+    "name": "borzoi",
+    "description": "borzoi description",
+    "dangerous": false
+  },
+  {
+    "name": "Irish wolfhound",
+    "description": "Irish wolfhound description",
+    "dangerous": false
+  },
+  {
+    "name": "Italian greyhound",
+    "description": "Italian greyhound description",
+    "dangerous": false
+  },
+  {
+    "name": "whippet",
+    "description": "whippet description",
+    "dangerous": false
+  },
+  {
+    "name": "Ibizan hound",
+    "description": "Ibizan hound description",
+    "dangerous": false
+  },
+  {
+    "name": "Norwegian elkhound",
+    "description": "Norwegian elkhound description",
+    "dangerous": false
+  },
+  {
+    "name": "otterhound",
+    "description": "otterhound description",
+    "dangerous": false
+  },
+  {
+    "name": "Saluki",
+    "description": "Saluki description",
+    "dangerous": false
+  },
+  {
+    "name": "Scottish deerhound",
+    "description": "Scottish deerhound description",
+    "dangerous": false
+  },
+  {
+    "name": "Weimaraner",
+    "description": "Weimaraner description",
+    "dangerous": false
+  },
+  {
+    "name": "Staffordshire bullterrier",
+    "description": "Staffordshire bullterrier description",
+    "dangerous": false
+  },
+  {
+    "name": "American Staffordshire terrier",
+    "description": "American Staffordshire terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Bedlington terrier",
+    "description": "Bedlington terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Border terrier",
+    "description": "Border terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Kerry blue terrier",
+    "description": "Kerry blue terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Irish terrier",
+    "description": "Irish terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Norfolk terrier",
+    "description": "Norfolk terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Norwich terrier",
+    "description": "Norwich terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Yorkshire terrier",
+    "description": "Yorkshire terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "wire-haired fox terrier",
+    "description": "wire-haired fox terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Lakeland terrier",
+    "description": "Lakeland terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Sealyham terrier",
+    "description": "Sealyham terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Airedale",
+    "description": "Airedale description",
+    "dangerous": false
+  },
+  {
+    "name": "cairn",
+    "description": "cairn description",
+    "dangerous": false
+  },
+  {
+    "name": "Australian terrier",
+    "description": "Australian terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Dandie Dinmont",
+    "description": "Dandie Dinmont description",
+    "dangerous": false
+  },
+  {
+    "name": "Boston bull",
+    "description": "Boston bull description",
+    "dangerous": false
+  },
+  {
+    "name": "miniature schnauzer",
+    "description": "miniature schnauzer description",
+    "dangerous": false
+  },
+  {
+    "name": "giant schnauzer",
+    "description": "giant schnauzer description",
+    "dangerous": false
+  },
+  {
+    "name": "standard schnauzer",
+    "description": "standard schnauzer description",
+    "dangerous": false
+  },
+  {
+    "name": "Scotch terrier",
+    "description": "Scotch terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Tibetan terrier",
+    "description": "Tibetan terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "silky terrier",
+    "description": "silky terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "soft-coated wheaten terrier",
+    "description": "soft-coated wheaten terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "West Highland white terrier",
+    "description": "West Highland white terrier description",
+    "dangerous": false
+  },
+  {
+    "name": "Lhasa",
+    "description": "Lhasa description",
+    "dangerous": false
+  },
+  {
+    "name": "flat-coated retriever",
+    "description": "flat-coated retriever description",
+    "dangerous": false
+  },
+  {
+    "name": "curly-coated retriever",
+    "description": "curly-coated retriever description",
+    "dangerous": false
+  },
+  {
+    "name": "golden retriever",
+    "description": "golden retriever description",
+    "dangerous": false
+  },
+  {
+    "name": "Labrador retriever",
+    "description": "Labrador retriever description",
+    "dangerous": false
+  },
+  {
+    "name": "Chesapeake Bay retriever",
+    "description": "Chesapeake Bay retriever description",
+    "dangerous": false
+  },
+  {
+    "name": "German short-haired pointer",
+    "description": "German short-haired pointer description",
+    "dangerous": false
+  },
+  {
+    "name": "vizsla",
+    "description": "vizsla description",
+    "dangerous": false
+  },
+  {
+    "name": "English setter",
+    "description": "English setter description",
+    "dangerous": false
+  },
+  {
+    "name": "Irish setter",
+    "description": "Irish setter description",
+    "dangerous": false
+  },
+  {
+    "name": "Gordon setter",
+    "description": "Gordon setter description",
+    "dangerous": false
+  },
+  {
+    "name": "Brittany spaniel",
+    "description": "Brittany spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "clumber",
+    "description": "clumber description",
+    "dangerous": false
+  },
+  {
+    "name": "English springer",
+    "description": "English springer description",
+    "dangerous": false
+  },
+  {
+    "name": "Welsh springer spaniel",
+    "description": "Welsh springer spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "cocker spaniel",
+    "description": "cocker spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "Sussex spaniel",
+    "description": "Sussex spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "Irish water spaniel",
+    "description": "Irish water spaniel description",
+    "dangerous": false
+  },
+  {
+    "name": "kuvasz",
+    "description": "kuvasz description",
+    "dangerous": false
+  },
+  {
+    "name": "schipperke",
+    "description": "schipperke description",
+    "dangerous": false
+  },
+  {
+    "name": "groenendael",
+    "description": "groenendael description",
+    "dangerous": false
+  },
+  {
+    "name": "malinois",
+    "description": "malinois description",
+    "dangerous": false
+  },
+  {
+    "name": "briard",
+    "description": "briard description",
+    "dangerous": false
+  },
+  {
+    "name": "kelpie",
+    "description": "kelpie description",
+    "dangerous": false
+  },
+  {
+    "name": "komondor",
+    "description": "komondor description",
+    "dangerous": false
+  },
+  {
+    "name": "Old English sheepdog",
+    "description": "Old English sheepdog description",
+    "dangerous": false
+  },
+  {
+    "name": "Shetland sheepdog",
+    "description": "Shetland sheepdog description",
+    "dangerous": false
+  },
+  {
+    "name": "collie",
+    "description": "collie description",
+    "dangerous": false
+  },
+  {
+    "name": "Border collie",
+    "description": "Border collie description",
+    "dangerous": false
+  },
+  {
+    "name": "Bouvier des Flandres",
+    "description": "Bouvier des Flandres description",
+    "dangerous": false
+  },
+  {
+    "name": "Rottweiler",
+    "description": "Rottweiler description",
+    "dangerous": false
+  },
+  {
+    "name": "German shepherd",
+    "description": "German shepherd description",
+    "dangerous": false
+  },
+  {
+    "name": "Doberman",
+    "description": "Doberman description",
+    "dangerous": false
+  },
+  {
+    "name": "miniature pinscher",
+    "description": "miniature pinscher description",
+    "dangerous": false
+  },
+  {
+    "name": "Greater Swiss Mountain dog",
+    "description": "Greater Swiss Mountain dog description",
+    "dangerous": false
+  },
+  {
+    "name": "Bernese mountain dog",
+    "description": "Bernese mountain dog description",
+    "dangerous": false
+  },
+  {
+    "name": "Appenzeller",
+    "description": "Appenzeller description",
+    "dangerous": false
+  },
+  {
+    "name": "EntleBucher",
+    "description": "EntleBucher description",
+    "dangerous": false
+  },
+  {
+    "name": "boxer",
+    "description": "boxer description",
+    "dangerous": false
+  },
+  {
+    "name": "bull mastiff",
+    "description": "bull mastiff description",
+    "dangerous": false
+  },
+  {
+    "name": "Tibetan mastiff",
+    "description": "Tibetan mastiff description",
+    "dangerous": false
+  },
+  {
+    "name": "French bulldog",
+    "description": "French bulldog description",
+    "dangerous": false
+  },
+  {
+    "name": "Great Dane",
+    "description": "Great Dane description",
+    "dangerous": false
+  },
+  {
+    "name": "Saint Bernard",
+    "description": "Saint Bernard description",
+    "dangerous": false
+  },
+  {
+    "name": "Eskimo dog",
+    "description": "Eskimo dog description",
+    "dangerous": false
+  },
+  {
+    "name": "malamute",
+    "description": "malamute description",
+    "dangerous": false
+  },
+  {
+    "name": "Siberian husky",
+    "description": "Siberian husky description",
+    "dangerous": false
+  },
+  {
+    "name": "dalmatian",
+    "description": "dalmatian description",
+    "dangerous": false
+  },
+  {
+    "name": "affenpinscher",
+    "description": "affenpinscher description",
+    "dangerous": false
+  },
+  {
+    "name": "basenji",
+    "description": "basenji description",
+    "dangerous": false
+  },
+  {
+    "name": "pug",
+    "description": "pug description",
+    "dangerous": false
+  },
+  {
+    "name": "Leonberg",
+    "description": "Leonberg description",
+    "dangerous": false
+  },
+  {
+    "name": "Newfoundland",
+    "description": "Newfoundland description",
+    "dangerous": false
+  },
+  {
+    "name": "Great Pyrenees",
+    "description": "Great Pyrenees description",
+    "dangerous": false
+  },
+  {
+    "name": "Samoyed",
+    "description": "Samoyed description",
+    "dangerous": false
+  },
+  {
+    "name": "Pomeranian",
+    "description": "Pomeranian description",
+    "dangerous": false
+  },
+  {
+    "name": "chow",
+    "description": "chow description",
+    "dangerous": false
+  },
+  {
+    "name": "keeshond",
+    "description": "keeshond description",
+    "dangerous": false
+  },
+  {
+    "name": "Brabancon griffon",
+    "description": "Brabancon griffon description",
+    "dangerous": false
+  },
+  {
+    "name": "Pembroke",
+    "description": "Pembroke description",
+    "dangerous": false
+  },
+  {
+    "name": "Cardigan",
+    "description": "Cardigan description",
+    "dangerous": false
+  },
+  {
+    "name": "toy poodle",
+    "description": "toy poodle description",
+    "dangerous": false
+  },
+  {
+    "name": "miniature poodle",
+    "description": "miniature poodle description",
+    "dangerous": false
+  },
+  {
+    "name": "standard poodle",
+    "description": "standard poodle description",
+    "dangerous": false
+  },
+  {
+    "name": "Mexican hairless",
+    "description": "Mexican hairless description",
+    "dangerous": false
+  },
+  {
+    "name": "tabby",
+    "description": "tabby description",
+    "dangerous": false
+  },
+  {
+    "name": "tiger cat",
+    "description": "tiger cat description",
+    "dangerous": false
+  },
+  {
+    "name": "Persian cat",
+    "description": "Persian cat description",
+    "dangerous": false
+  },
+  {
+    "name": "Siamese cat",
+    "description": "Siamese cat description",
+    "dangerous": false
+  },
+  {
+    "name": "Egyptian cat",
+    "description": "Egyptian cat description",
+    "dangerous": false
+  }
 ]

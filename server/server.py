@@ -104,6 +104,15 @@ def parse_table(conn: Connection, table_name: str):
         response[row[0]] = dict(pairs[1:])
     return response
     
+def animal_name_to_id(conn: Connection, animal_name: str):
+    json_dict = parse_table(conn, "animal")
+    # assume PK=1 is unknown animal
+    id = 1
+    for key, value in json_dict.items():
+        if value["name"] == animal_name:
+            id = key
+            break
+    return id
 
 class RequestHandler(BaseHTTPRequestHandler):
     def __init__(self, conn, *args):
@@ -181,7 +190,8 @@ class RequestHandler(BaseHTTPRequestHandler):
             tensor_bytes = sqlite3.Binary(tensor_to_bytes(embeddings))
             with self.conn:
                 # TODO: replace 1 with actual animal_id from db
-                image_id = add_image(self.conn, 1, score, tensor_bytes)
+                animal_id = animal_name_to_id(self.conn, class_name)
+                image_id = add_image(self.conn, animal_id, score, tensor_bytes)
             logging.info(f"image_id: {image_id}")
 
             filename = f"{image_id}.jpg"

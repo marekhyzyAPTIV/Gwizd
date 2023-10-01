@@ -70,30 +70,51 @@
                         on_press: root.manager.current = 'Report Screen'
 
 <LostAnimalScreen>:
+        FloatLayout:
+                BoxLayout:
+                        orientation: 'vertical'
+                        Button:
+                                text: 'Upload photo'
+                                on_press: root.photo_upload()
+                        Label:
+                                text: 'Animal type'
+                        TextInput
+
+                        Label:
+                                text: 'Animal name'
+                        TextInput
+
+                        Label:
+                                text: 'Last seen'
+                        TextInput
+
+                        Label:
+                                text: 'Additional information'
+                        TextInput
+
+                        Button:
+                                text: 'Send'
+                                on_press: root.manager.current = 'Main Screen'
+                        Button:
+                                text: 'Go back'
+                                on_press: root.manager.current = 'Report Screen'
+
+<LoadDialog>:
         BoxLayout:
-                orientation: 'vertical'
-                Button:
-                        text: 'Upload photo'
-                        on_press: root.photo_upload()
-                Label:
-                        text: 'Animal type'
-                TextInput
+                size: root.size
+                pos: root.pos
+                orientation: "vertical"
+                FileChooserListView:
+                        id: filechooser
+                        rootpath: '.\\'
 
-                Label:
-                        text: 'Animal name'
-                TextInput
+                BoxLayout:
+                        size_hint_y: None
+                        height: 30
+                        Button:
+                                text: "Cancel"
+                                on_release: root.cancel()
 
-                Label:
-                        text: 'Last seen'
-                TextInput
-
-                Label:
-                        text: 'Additional information'
-                TextInput
-
-                Button:
-                        text: 'Send'
-                        on_press: root.manager.current = 'Main Screen'
-                Button:
-                        text: 'Go back'
-                        on_press: root.manager.current = 'Report Screen'
+                        Button:
+                                text: "Load"
+                                on_release: root.load(filechooser.path, filechooser.selection)

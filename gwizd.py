@@ -21,7 +21,17 @@ import os
 
 # from plyer import gps
 
-
+def send_report(image_id, animal_name, animal_type, last_seen_date, additional_info):
+    payload = json.dumps(
+        {"Id": image_id, "Name": animal_name, "type": animal_type, "last_seen": last_seen_date, "additional_info": additional_info} 
+    )
+    headers = {"Content-type": "application/json", "Accept": "text/plain"}
+    r = requests.post(
+        "http://localhost:8080/init-report",
+        data=payload,
+        headers=headers,
+    )
+    
 def send_image(img: Image.Image):
     buffer = BytesIO()
     img.save(buffer, format="png")
@@ -181,6 +191,7 @@ class AnimalDescriptionScreen(Screen):
 class LostAnimalScreen(Screen):
     def __init__(self, **kwargs):
         super(LostAnimalScreen, self).__init__(**kwargs)
+        self.image_id = None
 
     # Upload photo -> Wait for response
     # If not uploaded -> Type in animal type by user
@@ -191,15 +202,19 @@ class LostAnimalScreen(Screen):
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as f:
             image = Image.open(f.name)
-        image_id = send_image(image)
-        seen_animal = get_animal(image_id)
-        self.ids["animal_type"].text = seen_animal["name"]
+        self.image_id = send_image(image)
+        seen_animal = get_animal(self.image_id)
+        self.ids['animal_type'].text = seen_animal['name']
         self.dismiss_popup()
 
     def photo_upload(self):
         content = LoadDialog(load=self.load, cancel=self.dismiss_popup)
         self._popup = Popup(title="Load file", content=content, size_hint=(0.9, 0.9))
         self._popup.open()
+    
+    def on_send_click(self):
+        send_report(self.image_id, self.ids['animal_name_input'].text, self.ids['animal_type'].text, self.ids['last_seen_input'].text, self.ids['additional_info_input'].text)
+        self.manager.current = 'Main Screen'
 
 
 class Gwizd(App):

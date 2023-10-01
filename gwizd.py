@@ -90,17 +90,30 @@ class MainScreen(Screen):
         self.points_ts = []
         self.circles = []
         self.update_reports()
+        Clock.schedule_interval(self.update_reports, 20)
         Clock.schedule_interval(self.update_circles, 1/30)
 
-    def update_reports(self):
+    def clear_points(self):
+        for point in self.points:
+            self.mapview.remove_marker(point)
+        self.points = []
+        self.points_ts = []
+        for circle in self.circles:
+            self.canvas.children.remove(circle)
+        self.circles = []
+
+    def update_reports(self, *args):
         r = requests.get("http://localhost:8080/get-reports")
-        if r.status_code == 200:
+        r_animals = requests.get("http://localhost:8080/get-animals")
+        if r.status_code == 200 and r_animals.status_code == 200:
+            self.clear_points()
+            animals = json.loads(r_animals.content.decode("utf-8"))
             timestamp_now = time.time()
             json_dict = r.json()
             for value in json_dict.values():
                 point = MapMarkerPopup(lat=value["latitude"], lon=value["longitude"])
-                point.anchor_x
-                point.add_widget(Label(text=str(value["animal_id"]), color=(0, 0, 0)))
+                animal_name = animals.get(str(value["animal_id"]), {"name": "Unknown"})["name"]
+                point.add_widget(Label(text=animal_name, color=(0, 0, 0)))
                 self.mapview.add_marker(point)
                 self.points.append(point)
                 timestamp = value["timestamp"]
@@ -110,7 +123,8 @@ class MainScreen(Screen):
                     radius = max(3, ts_diff / 60)
                     alpha = max(0, 2*60*60 - ts_diff) / (2*60*60)
                     Color(1, 0, 0, alpha)
-                    circle = Ellipse(pos=point.pos, size=(radius, radius))
+                    pos = (point.pos[0] + point.width / 2 - radius, point.pos[1] - radius)
+                    circle = Ellipse(pos=pos, size=(2*radius, 2*radius))
                     self.circles.append(circle)
 
     def update_circles(self, *args):
@@ -119,8 +133,9 @@ class MainScreen(Screen):
                 for point, timestamp, circle in zip(self.points, self.points_ts, self.circles):
                     ts_diff = (timestamp_now - timestamp)
                     radius = max(3, ts_diff / 60)
-                    circle.size = (radius, radius)
-                    circle.pos = point.pos
+                    circle.size = (2*radius, 2*radius)
+                    pos = (point.pos[0] + point.width / 2 - radius, point.pos[1] - radius)
+                    circle.pos = pos
 
 class ReportScreen(Screen):
     def __init__(self, **kwargs):

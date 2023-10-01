@@ -17,7 +17,7 @@ import os
 
 # from plyer import gps
 
-def sendImage(img: Image.Image):
+def send_image(img: Image.Image):
     buffer = BytesIO()
     img.save(buffer, format="png")
     im_base = base64.b64encode(buffer.getvalue()).decode("utf8")
@@ -34,7 +34,20 @@ def sendImage(img: Image.Image):
     if r.status_code == 200:
         image_id = int(r.text)
         print(f"Image sent, id: {image_id}")
+        return image_id
+    return None
             
+def get_animal(image_id):
+    predictions_response = requests.get(
+            "http://localhost:8080/get-images"
+        )
+    animals_response = requests.get(
+        "http://localhost:8080/get-animals",
+    )
+    predictions = json.loads(predictions_response.content.decode('utf-8'))
+    animals = json.loads(animals_response.content.decode('utf-8'))
+    return animals[str(predictions[str(image_id)]['animal_id'])]
+
 class LoadDialog(FloatLayout):
     load = ObjectProperty(None)
     cancel = ObjectProperty(None)
@@ -47,11 +60,14 @@ class MainButtons(AnchorLayout):
 
     def add_click(self):
         print("Clicked add animal")
-        # self.sendImage()
         self.parent.manager.current = "Report Screen"
 
     def gps_click(self):
         print("Localizing")
+        krakow_gps = (19.5611, 50.0341)
+        self.parent.children[1].lon = krakow_gps[0]
+        self.parent.children[1].lat = krakow_gps[1]
+        self.parent.children[1].zoom = 10
 
     def alerts_click(self):
         print("Showing alerts")
@@ -88,7 +104,11 @@ class CameraScreen(Screen):
         image = Image.frombytes(mode='RGBA', size=size,data=frame).convert('RGB')
         # image.save("IMG_{}.png".format(timestr))
         print("Captured")
-        sendImage(image)
+        image_id = send_image(image)
+        seen_animal = get_animal(image_id)
+        
+        print(f"Recognized: {seen_animal['name']}, {seen_animal['description']}, Dangerous: {'yes' if seen_animal['dangerous'] else 'no'}")
+    
         self.manager.current = "Main Screen"
 
 
@@ -111,7 +131,9 @@ class LostAnimalScreen(Screen):
     def load(self, path, filename):
         with open(os.path.join(path, filename[0])) as f:
             image = Image.open(f.name)
-        sendImage(image)
+        image_id = send_image(image)
+        seen_animal = get_animal(image_id)
+        self.ids['animal_type'].text = seen_animal['name']
         self.dismiss_popup()
         
     def photo_upload(self):

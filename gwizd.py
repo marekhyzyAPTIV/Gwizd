@@ -83,10 +83,10 @@ class CameraScreen(Screen):
         """
         camera = self.ids["camera"]
         timestr = time.strftime("%Y%m%d_%H%M%S")
-        # camera.export_to_png("IMG_{}.png".format(timestr))
         size=camera.texture.size
         frame=camera.texture.pixels
-        image = Image.frombytes(mode='RGB', size=size,data=frame)
+        image = Image.frombytes(mode='RGBA', size=size,data=frame).convert('RGB')
+        # image.save("IMG_{}.png".format(timestr))
         print("Captured")
         sendImage(image)
         self.manager.current = "Main Screen"

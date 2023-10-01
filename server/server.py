@@ -8,7 +8,6 @@ import json
 import base64
 from PIL import Image
 import io
-import uuid
 
 from class_recognition import do_inference, tensor_to_bytes
 
@@ -92,6 +91,18 @@ def parse_parameter(parameters: dict, name: str, val_type: type = None):
         logging.warning(f"Error parsing {name}, value: {value}")
         value = None
     return value
+
+def parse_table(conn: Connection, table_name: str):
+    cur = conn.cursor()
+    cur.execute(f"SELECT * FROM {table_name}")
+    fieldnames = [d[0] for d in cur.description]
+    response = {}
+    rows = cur.fetchall()
+    for row in rows:
+        pairs = list(zip(fieldnames, row))
+        logging.info(pairs)
+        response[row[0]] = dict(pairs[1:])
+    return response
     
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -104,8 +115,41 @@ class RequestHandler(BaseHTTPRequestHandler):
         self.send_header('Content-type', 'text/html')
         self.end_headers()
 
+    def _set_response_json(self):
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+
     def do_GET(self):
         logging.info("GET request,\nPath: %s\nHeaders:\n%s\n", str(self.path), str(self.headers))
+        if '/get-reports' in self.path:
+            json_dict = parse_table(self.conn, "report")
+            self._set_response_json()
+            self.wfile.write(json.dumps(json_dict).encode())
+            return
+        elif '/get-animals' in self.path:
+            json_dict = parse_table(self.conn, "animal")
+            self._set_response_json()
+            self.wfile.write(json.dumps(json_dict).encode())
+            return
+        elif '/get-images' in self.path:
+            json_dict = parse_table(self.conn, "image")
+            for key, value in json_dict.items():
+                json_dict[key]["embeddings"] = base64.b64encode(value["embeddings"]).decode("utf-8")
+            self._set_response_json()
+            self.wfile.write(json.dumps(json_dict).encode())
+            return
+        elif '/get-unique-animals' in self.path:
+            json_dict = parse_table(self.conn, "unique_animal")
+            self._set_response_json()
+            self.wfile.write(json.dumps(json_dict).encode())
+            return
+        elif '/get-matches' in self.path:
+            json_dict = parse_table(self.conn, "match")
+            self._set_response_json()
+            self.wfile.write(json.dumps(json_dict).encode())
+            return
+
         self._set_response()
         self.wfile.write("GET request for {}".format(self.path).encode('utf-8'))
 

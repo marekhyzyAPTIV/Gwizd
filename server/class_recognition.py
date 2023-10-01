@@ -1,4 +1,3 @@
-from torchvision.transforms.functional import pil_to_tensor
 from torchvision.models import resnet50, ResNet50_Weights
 import torch
 import torch.nn as nn
@@ -12,8 +11,7 @@ def do_inference(img_pil):
 
     preprocess = weights.transforms()
 
-    img = pil_to_tensor(img_pil)
-    batch = preprocess(img).unsqueeze(0)
+    batch = preprocess(img_pil).unsqueeze(0)
     modelNoFN = nn.Sequential(*list(model.children())[:-1])
 
     prediction = model(batch).squeeze(0).softmax(0)

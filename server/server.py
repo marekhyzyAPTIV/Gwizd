@@ -8,8 +8,9 @@ import json
 import base64
 from PIL import Image
 import io
+import uuid
 
-from class_recognition import do_inference
+from class_recognition import do_inference, tensor_to_bytes
 
 PATH_JSON = Path(__file__).parent / Path("animals.json")
 PATH_DB = Path(__file__).parent / Path("server.db")
@@ -30,6 +31,14 @@ def create_db(path: Path):
          timestamp INTEGER NOT NULL,
          longitude REAL NOT NULL,
          latitude REAL NOT NULL,
+         FOREIGN KEY(animal_id) REFERENCES animal(_id));"""
+    )
+    conn.execute(
+        """CREATE TABLE image
+         (_id INTEGER PRIMARY KEY AUTOINCREMENT,
+         animal_id INTEGER NOT NULL,
+         score REAL NOT NULL,
+         embeddings BLOB NOT NULL,
          FOREIGN KEY(animal_id) REFERENCES animal(_id));"""
     )
     conn.execute(
@@ -63,6 +72,10 @@ def add_animals(conn: Connection, path_json: Path):
 def add_report(conn: Connection, animal_id: int, timestamp: int, longitude: float, latitude: float):         
     command = f"INSERT INTO report (animal_id, timestamp, longitude, latitude)\nVALUES ( {animal_id}, {timestamp}, {longitude}, {latitude} );"  
     conn.execute(command)
+
+def add_image(conn: Connection, animal_id: int, score: float, embeddings: bytes):
+    command = f"INSERT INTO image (animal_id, score, embeddings)\nVALUES ( {animal_id}, {score}, ? );"  
+    return conn.execute(command, (embeddings,)).lastrowid
 
 def add_unique_animal(conn: Connection, unique_animal_id: int, animal_id: int):         
     command = f"INSERT INTO report (unique_animal_id, animal_id)\nVALUES ( {unique_animal_id}, {animal_id} );"  
@@ -114,11 +127,29 @@ class RequestHandler(BaseHTTPRequestHandler):
             length = int(self.headers.get('content-length'))
             payload = json.loads(self.rfile.read(length))
             logging.info(f"fields: {payload.keys()}")
+
             img_bytes = base64.b64decode(payload["Uploaded file"].encode('utf-8'))
             img = Image.open(io.BytesIO(img_bytes))
-            img.save("received.jpg")
+
             class_name, score, embeddings = do_inference(img)
             logging.info(f"class_name: {class_name}, score: {score}, embeddings: {embeddings}")
+
+            tensor_bytes = sqlite3.Binary(tensor_to_bytes(embeddings))
+            with self.conn:
+                # TODO: replace 1 with actual animal_id from db
+                image_id = add_image(self.conn, 1, score, tensor_bytes)
+            logging.info(f"image_id: {image_id}")
+
+            filename = f"{image_id}.jpg"
+            img.save(filename)
+
+            # return image_id
+            response = bytes(str(image_id), "utf-8")
+            self.send_response(200)
+            self.send_header("Content-Length", str(len(response)))
+            self.end_headers()
+            self.wfile.write(response)
+            return
 
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))

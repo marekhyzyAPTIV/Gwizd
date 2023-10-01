@@ -68,7 +68,9 @@ class CameraScreen(Screen):
             data=payload,
             headers=headers,
         )
-        print(r.status_code)
+        if r.status_code == 200:
+            image_id = int(r.text)
+            print(f"Image sent, id: {image_id}")
 
     def capture(self):
         """

@@ -101,19 +101,22 @@
 
                         Label:
                                 text: 'Animal name'
-                        TextInput
+                        TextInput:
+                                id: animal_name_input
 
                         Label:
                                 text: 'Last seen'
-                        TextInput
+                        TextInput:
+                                id: last_seen_input
 
                         Label:
                                 text: 'Additional information'
-                        TextInput
+                        TextInput:
+                                id: additional_info_input
 
                         Button:
                                 text: 'Send'
-                                on_press: root.manager.current = 'Main Screen'
+                                on_press: root.on_send_click()
                         Button:
                                 text: 'Go back'
                                 on_press: root.manager.current = 'Report Screen'

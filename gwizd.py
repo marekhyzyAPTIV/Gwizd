@@ -7,6 +7,10 @@ from kivy_garden.mapview import MapView
 import time
 from kivy.uix.screenmanager import ScreenManager, Screen
 import requests
+import base64
+from PIL import Image
+from io import BytesIO
+import json
 
 # import cv2
 
@@ -50,12 +54,21 @@ class CameraScreen(Screen):
     def __init__(self, **kwargs):
         super(CameraScreen, self).__init__(**kwargs)
 
-    def sendImage(self, im):
-        # image = cv2.imread("dog.jpg")
-        upload_file = {"Uploaded file": im, "location": (51, 28)}
+    def sendImage(self, img: Image.Image):
+        buffer = BytesIO()
+        img.save(buffer, format="png")
+        im_base = base64.b64encode(buffer.getvalue()).decode("utf8")
+        payload = json.dumps(
+            {"Uploaded file": im_base, "latitude": "50.0647", "longitude": "19.9450"}
+        )
+        headers = {"Content-type": "application/json", "Accept": "text/plain"}
+
         r = requests.post(
-            "localhost:8080/init-report", files=upload_file
-        )  # TODO change url to server path
+            "http://localhost:8080/init-report",
+            data=payload,
+            headers=headers,
+        )
+        print(r.status_code)
 
     def capture(self):
         """
@@ -65,7 +78,9 @@ class CameraScreen(Screen):
         camera = self.ids["camera"]
         timestr = time.strftime("%Y%m%d_%H%M%S")
         # camera.export_to_png("IMG_{}.png".format(timestr))
-        image = camera.texture.pixels
+        size=camera.texture.size
+        frame=camera.texture.pixels
+        image = Image.frombytes(mode='RGBA', size=size,data=frame)
         print("Captured")
         self.sendImage(image)
         self.manager.current = "Main Screen"

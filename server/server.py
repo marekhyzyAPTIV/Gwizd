@@ -5,6 +5,9 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import logging
 import urllib.parse as urlparse
 import json
+import base64
+from PIL import Image
+import io
 
 PATH_JSON = Path("animals.json")
 
@@ -106,9 +109,11 @@ class RequestHandler(BaseHTTPRequestHandler):
                 add_report(self.conn, *params)
         elif '/init-report' in self.path:
             length = int(self.headers.get('content-length'))
-            field_data = self.rfile.read(length)
-            fields = urlparse.parse_qs(field_data)
-            print("fields", fields)
+            payload = json.loads(self.rfile.read(length))
+            logging.info(f"fields: {payload.keys()}")
+            img_bytes = base64.b64decode(payload["Uploaded file"].encode('utf-8'))
+            img = Image.open(io.BytesIO(img_bytes))
+            img.save("received.jpg")
 
         self._set_response()
         self.wfile.write("POST request for {}".format(self.path).encode('utf-8'))
